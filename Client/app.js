@@ -1,5 +1,5 @@
-import swell from 'swell-js'
-swelljs.init('digital-crafts', 'pk_66uRWvvReKdl2WnL9Su1ACfQBTvu0m1x	')
+import swell from "/swell-js"
+swell.init('digital-crafts', 'pk_66uRWvvReKdl2WnL9Su1ACfQBTvu0m1x	')
 
 
 const cartBtn = document.querySelector('.cart-btn');
