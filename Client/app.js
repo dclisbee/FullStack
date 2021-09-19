@@ -130,14 +130,31 @@ class UI {
         cartOverlay.classList.add('transparentBcg');
         cart.DOM.classList.add('showCart');
     }
+    setupAPP() {
+        // cart = //check cart method from below 
+        this.setCartValues(cart);
+        this.populateCart(cart);
+        cartBtn.addEventListener('click', this.showCart);
+        closeCartBtn.addEventListener('click', this.hideCart)
 
+    }
+    populateCart(cart) {
+        cart.forEach(item => this.addCartItem(item));
+    }
+    hideCart() {
+        cartOverlay.classList.remove('transparentBcg');
+        cart.DOM.classList.remove('showCart');
+    }
 }
 
 //database call for products info that will be filled by products class
+//getcart from database
+
 
 document.addEventListener("DOMContentLoaded", () => {
     const ui = new UI();
     const products = new Products();
+    ui.setupAPP();
     products.getProducts().then(products => ui.displayProducts(products)).then(() => {
         ui.getBagButtons();
 
