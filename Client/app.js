@@ -13,8 +13,9 @@ const cartContent = document.querySelector('.cart-content');
 const productsDOM = document.querySelector('.products-center');
 
 
-
 let cart = [];
+
+let buttonsDOM = [];
 
 class Products {
 
@@ -68,14 +69,77 @@ class UI {
         });
         productsDOM.innerHTML = result;
     }
+    getBagButtons() {
+            const buttons = [...document.querySelector('.bag-btns')];
+            buttonsDOM = buttons;
+            buttons.forEach(button => {
+                let id = button.dataset.id;
+                let inCart = cart.find(item => item.id === id);
+                if (inCart) {
+                    button.innerText = "In Cart";
+                    button.disabled = true;
+                } else {
+                    button.addEventListener('click', (event) => {
+                        event.target.innerText = "In Cart";
+                        event.target.disabled = true;
+                        //get product on click from api
+                        let cartItem = //{...api.____(id), amount: 1};
+                            cart = [...cart, cartItem];
+                        //save cart into database somehow
+                        this.setCartValues(cart);
+                        //maybe use local storage as placeholder
+                        this.addCartItem(cartItem);
+                        this.showCart();
+                    })
+                }
+            })
+
+
+        }
+        //place???
+    setCartValues(cart) {
+        let tempTotal = 0;
+        let itemsTotal = 0;
+        cart.map(item => {
+            tempTotal += item.price * item.amount;
+            itemsTotal += item.amount;
+        })
+        cartTotal.innerText = parseFloat(tempTotal.toFixed(2));
+        cartItems.innerText = itemsTotal;
+    }
+    addCartItem(item) {
+        const div = document.createElement('div');
+        div.classList.add('cart-item');
+        div.innerHTML = `
+                    <img src=${item.image} alt="">
+                    <div class="">
+                        <h4>${item.title}</h4>
+                        <h5>$${item.price}</h5>
+                        <span class="remove-item" data-id=${item.id}>remove</span>
+                    </div>
+                    <div>
+                        <i class="fas fa-chevron-up" data-id=${item.id}></i>
+                        <p class="item-amount">${item.amount}</p>
+                        <i class="fas fa-chevron-down" data-id=${item.id}></i>
+                    </div>
+        `
+        cartContent.appendChild(div);
+
+    }
+    showCart() {
+        cartOverlay.classList.add('transparentBcg');
+        cart.DOM.classList.add('showCart');
+    }
+
 }
 
-class Storage {
-
-}
+//database call for products info that will be filled by products class
 
 document.addEventListener("DOMContentLoaded", () => {
     const ui = new UI();
     const products = new Products();
-    products.getProducts().then(products => ui.displayProducts(products));
+    products.getProducts().then(products => ui.displayProducts(products)).then(() => {
+        ui.getBagButtons();
+
+    });
 })
