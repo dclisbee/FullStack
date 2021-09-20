@@ -15,28 +15,30 @@ let cart = [];
 let buttonsDOM = [];
 
 const createUser = async() => {
-    const url = "http://localhost:3006/create_user";
-    const userEmail = document.querySelector("#email").value;
-    const userPassword = document.querySelector("#password").value;
-    const userAccount = {
-        userEmail,
-        userPassword,
-    }
+        const url = "http://localhost:3006/create_user";
+        const userEmail = document.querySelector("#email").value;
+        const userPassword = document.querySelector("#password").value;
+        const userAccount = {
+            userEmail,
+            userPassword,
+        }
 
-    const createUsers = await fetch(url, {
-        method: "POST",
-        mode: "cors",
-        headers: {
-            "Content-Type": "application/json",
-        },
-        body: JSON.stringify(userAccount),
-    });
-}
-regButton.addEventListener("click", () => {
-    createUser();
-})
+        const createUsers = await fetch(url, {
+            method: "POST",
+            mode: "cors",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(userAccount),
+        });
+    }
+    // regButton.addEventListener("click", () => {
+    //     createUser();
+    // })
 
 const readToDo = async() => {
+    let result = await fetch('URL');
+    let data = await result.json();
     const url = "http://localhost:3006/get_user";
     const userAccount = await fetch(url, {
         method: "POST",
@@ -47,7 +49,7 @@ const readToDo = async() => {
     });
 
     //maybe need id to pick user
-    const json = await userAccount.json(id);
+    const json = await userAccount.json(data.id);
     console.log(json)
 }
 
@@ -57,12 +59,10 @@ const readToDo = async() => {
 class Products {
 
 
-    //    API CALL HERE TO GET PRODUCTS
     async getProducts() {
         // let result = await fetch('URL');
         // let data = await result.json();
 
-        //ARRAY FROM API
         let products = data.items;
         products = products.map(item => {
             //FIELDS IS SUB ARRAY SECTION NAME
@@ -165,7 +165,7 @@ class UI {
         this.setCartValues(cart);
         this.populateCart(cart);
         cartBtn.addEventListener('click', this.showCart);
-        closeCartBtn.addEventListener('click', this.hideCart)
+        closeCartBtn.addEventListener('click', this.hideCart);
 
     }
     populateCart(cart) {
@@ -173,7 +173,7 @@ class UI {
     }
     hideCart() {
         cartOverlay.classList.remove('transparentBcg');
-        cart.DOM.classList.remove('showCart');
+        cartDOM.classList.remove('showCart');
     }
     cartLogic() {
         clearCartBtn.addEventListener('click', () => {
@@ -201,7 +201,7 @@ class UI {
     }
     clearCart() {
         let cartItems = cart.map(item => item.id);
-        //call remove from database for cart for alll items
+        //call remove from database for cart for all items
         cartItems.forEach(id => this.removeItem(id));
         while (cartContent.children.length > 0) {
             cartContent.removeChild(cartContent.children[0]);
