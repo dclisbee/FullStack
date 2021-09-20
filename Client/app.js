@@ -7,11 +7,52 @@ const cartItems = document.querySelector('.cart-items');
 const cartTotal = document.querySelector('.cart-total');
 const cartContent = document.querySelector('.cart-content');
 const productsDOM = document.querySelector('.products-center');
-
+const regButton = document.querySelector('#register');
+const logButton = document.querySelector('#login');
 
 let cart = [];
 
 let buttonsDOM = [];
+
+const createUser = async() => {
+    const url = "http://localhost:3006/create_user";
+    const userEmail = document.querySelector("#email").value;
+    const userPassword = document.querySelector("#password").value;
+    const userAccount = {
+        userEmail,
+        userPassword,
+    }
+
+    const createUsers = await fetch(url, {
+        method: "POST",
+        mode: "cors",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(userAccount),
+    });
+}
+regButton.addEventListener("click", () => {
+    createUser();
+})
+
+const readToDo = async() => {
+    const url = "http://localhost:3006/get_user";
+    const userAccount = await fetch(url, {
+        method: "POST",
+        mode: "cors",
+        headers: {
+            "Content-Type": "application/json",
+        },
+    });
+
+    //maybe need id to pick user
+    const json = await userAccount.json(id);
+    console.log(json)
+}
+
+
+
 
 class Products {
 
