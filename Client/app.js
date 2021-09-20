@@ -1,4 +1,4 @@
-import { remove } from "lodash";
+// import { remove } from "lodash";
 import swell from "/swell-js"
 swell.init('digital-crafts', 'pk_66uRWvvReKdl2WnL9Su1ACfQBTvu0m1x	')
 
