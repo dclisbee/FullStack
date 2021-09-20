@@ -99,6 +99,18 @@ body {
     cursor: pointer;
 }
 
+#register,
+#login {
+    padding: 0.3rem 0.7rem;
+    letter-spacing: var(--mainSpacing);
+    font-size: 0.7rem;
+    background: var(--primaryColor);
+    color: var(--mainBlack);
+    border: 1px solid var(--primaryColor);
+    transition: var(--mainTransition);
+    cursor: pointer;
+}
+
 .banner-btn:hover {
     background: transparent;
     color: var(--primaryColor);
