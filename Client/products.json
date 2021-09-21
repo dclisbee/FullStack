@@ -1,0 +1,34 @@
+{
+    "items": [{
+            "sys": { "id": "1" },
+            "fields": {
+                "title": "Now Hat",
+                "price": 35.00,
+                "image": {
+                    "fields": {
+                        "file": {
+                            "url": "https://cdn.shopify.com/s/files/1/2445/4975/products/19404403_outerknown_EvolutionDadHat_MBL_f_bd_1400x1400.jpg?v=1573022058"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "sys": { "id": "2" },
+            "fields": {
+                "title": "Dat Boi Hat",
+                "price": 45.00,
+                "image": {
+                    "fields": {
+                        "file": {
+                            "url": "https://m.media-amazon.com/images/I/61zzs68AWlL._AC_UL1001_.jpg"
+                        }
+                    }
+                }
+            }
+        }
+
+
+
+    ]
+}

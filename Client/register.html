@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://kit.fontawesome.com/fcc4dcee83.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="navbar-center">
+            <div class="dropdown">
+                <button class="dropbtn">Links
+      <i class="fas fa-bars"></i>
+    </button>
+                <div class="dropdown-content">
+                    <a href="products.html">Products</a>
+                    <a href="about.html">About Us</a>
+                    <a href="contact.html">Contact</a>
+                    <a href="login.html">Login</a>
+                    <a href="register.html">Register</a>
+                </div>
+            </div>
+            <!--IMG LOGO and ALT NAME-->
+            <a href="index.html"><img src="dad-hat.png" alt="store logo" class="logo"></a>
+            <div class="cart-btn">
+                <span class="nav-icon">
+                <i class="fas fa-cart-plus"></i>
+            </span>
+                <div class="cart-items">0</div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="cart-overlay">
+        <div class="cart">
+            <span class="close-cart">
+            <i class="fas fa-window-close"></i>
+        </span>
+            <h2>your cart</h2>
+            <div class="cart-content">
+                <div class="cart-item">
+                </div>
+            </div>
+            <div class="cart-footer">
+                <h3>your total : $ <span class="cart-total">0</span></h3>
+                <button class="clear-cart banner-btn">clear cart</button>
+            </div>
+        </div>
+
+    </div>
+    <main id="main-holder">
+        <h1 id="login-header">Register</h1>
+        <p class="">Please fill out form to register</p>
+
+        <form id="login-form">
+            <input type="text" name="email" id="email-field" class="login-form-field" placeholder="Email">
+            <input type="password" name="password" id="password-field" class="login-form-field" placeholder="Password">
+            <input type="submit" value="Login" id="login-form-submit">
+        </form>
+
+</body>
+<script src="login.js"></script>
+<script src="app.js"></script>
+
+</html>
