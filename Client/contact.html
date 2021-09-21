@@ -6,16 +6,27 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://kit.fontawesome.com/fcc4dcee83.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
     <nav class="navbar">
         <div class="navbar-center">
-            <span class="nav-icon">
-            <i class="fas fa-bars"></i>
-        </span>
+            <div class="dropdown">
+                <button class="dropbtn">Links
+      <i class="fas fa-bars"></i>
+    </button>
+                <div class="dropdown-content">
+                    <a href="products.html">Products</a>
+                    <a href="about.html">About Us</a>
+                    <a href="contact.html">Contact</a>
+                    <a href="login.html">Login</a>
+                    <a href="register.html">Register</a>
+                </div>
+            </div>
             <!--IMG LOGO and ALT NAME-->
-            <img src="" alt="store logo" class="logo">
+            <a href="index.html"><img src="dad-hat.png" alt="store logo" class="logo"></a>
             <div class="cart-btn">
                 <span class="nav-icon">
                 <i class="fas fa-cart-plus"></i>
@@ -33,17 +44,6 @@
             <h2>your cart</h2>
             <div class="cart-content">
                 <div class="cart-item">
-                    <!-- <img src="" alt=""> -->
-                    <!-- <div class="">
-                        <h4>itemTitle</h4>
-                        <h5>$9.00</h5>
-                        <span class="remove-item">remove</span>
-                    </div>
-                    <div>
-                        <i class="fas fa-chevron-up"></i>
-                        <p class="item-amount"></p>
-                        <i class="fas fa-chevron-down"></i>
-                    </div> -->
                 </div>
             </div>
             <div class="cart-footer">
@@ -51,8 +51,11 @@
                 <button class="clear-cart banner-btn">clear cart</button>
             </div>
         </div>
-
     </div>
+
+    <h1>Contact Us</h1>
+    <p>Lorem Ipsum</p>
 </body>
+<script src="app.js"></script>
 
 </html>

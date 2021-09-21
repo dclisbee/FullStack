@@ -13,30 +13,38 @@
 <body>
     <nav class="navbar">
         <div class="navbar-center">
-            <span class="nav-icon">
-            <i class="fas fa-bars"></i>
-        </span>
+            <div class="dropdown">
+                <button class="dropbtn">Links
+      <i class="fas fa-bars"></i>
+    </button>
+                <div class="dropdown-content">
+                    <a href="products.html">Products</a>
+                    <a href="about.html">About Us</a>
+                    <a href="contact.html">Contact</a>
+                    <a href="login.html">Login</a>
+                    <a href="register.html">Register</a>
+                </div>
+            </div>
             <!--IMG LOGO and ALT NAME-->
-            <img src="" alt="store logo" class="logo">
+            <a href="index.html"><img src="dad-hat.png" alt="store logo" class="logo"></a>
             <div class="cart-btn">
                 <span class="nav-icon">
                 <i class="fas fa-cart-plus"></i>
             </span>
+                <div class="dropdown-content">
+                    <div class="dropdown-content">
+                        <a href="#">Products</a>
+                        <a href="#">About Us</a>
+                        <a href="#">Contact</a>
+                        <a href="#">Login</a>
+                        <a href="#">Register</a>
+                    </div>
+                </div>
                 <div class="cart-items">0</div>
             </div>
         </div>
     </nav>
 
-
-    <header class="hero">
-        <div class="banner">
-            <h1 class="banner-title"></h1>
-            <button class="banner-btn">shop now</button>
-        </div>
-    </header>
-
-
-    <!-- cart -->
     <div class="cart-overlay">
         <div class="cart">
             <span class="close-cart">
@@ -45,17 +53,6 @@
             <h2>your cart</h2>
             <div class="cart-content">
                 <div class="cart-item">
-                    <!-- <img src="" alt=""> -->
-                    <!-- <div class="">
-                        <h4>itemTitle</h4>
-                        <h5>$9.00</h5>
-                        <span class="remove-item">remove</span>
-                    </div>
-                    <div>
-                        <i class="fas fa-chevron-up"></i>
-                        <p class="item-amount"></p>
-                        <i class="fas fa-chevron-down"></i>
-                    </div> -->
                 </div>
             </div>
             <div class="cart-footer">
@@ -65,31 +62,15 @@
         </div>
 
     </div>
-
-
-    <!-- <section class="products">
-        <div class="section-title">
-            <h2>our products</h2>
+    <header class="hero">
+        <div class="banner">
+            <h1 class="banner-title">Dad Hats 'R Us</h1>
+            <button class="banner-btn" onclick="location.href='products.html'">shop now</button>
         </div>
-        <div class="products-center">
-            <article class="product">
-                <div class="img-container"> -->
-    <!--images of products-->
-    <!-- <img src="https://m.media-amazon.com/images/I/8114AVDM3KL._AC_UY218_.jpg" alt="" class="product-image">
-                    <button class="bag-btn" data-id="1">
-                            <i class="fas fa-shopping-cart"></i>
-                            add to bag
-                    </button>
-    </div>
-    <h3>Title</h3>
-                <h4>$30</h4>
-    </article>
-        </div>
-    </section> -->
+    </header>
 
 </body>
 
 <script src="app.js"></script>
-<!-- <script type="module" src="app.js"></script> -->
 
 </html>

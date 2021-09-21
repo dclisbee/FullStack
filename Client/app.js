@@ -9,6 +9,7 @@ const cartContent = document.querySelector('.cart-content');
 const productsDOM = document.querySelector('.products-center');
 const regButton = document.querySelector('#register');
 const logButton = document.querySelector('#login');
+const btns = document.querySelectorAll(".bag.btn");
 
 let cart = [];
 
@@ -60,8 +61,8 @@ class Products {
 
 
     async getProducts() {
-        // let result = await fetch('URL');
-        // let data = await result.json();
+        let result = await fetch('products.json');
+        let data = await result.json();
 
         let products = data.items;
         products = products.map(item => {
@@ -84,8 +85,7 @@ class UI {
             result += `
             <article class="product">
                 <div class="img-container">
-                    <!--images of products-->
-                    <img src=${product.image} alt="" class="product-image">
+                    <img src=${product.image} alt="product" class="product-image">
                     <button class="bag-btn" data-id=${product.id}>
                             <i class="fas fa-shopping-cart"></i>
                             add to cart
@@ -100,33 +100,34 @@ class UI {
         productsDOM.innerHTML = result;
     }
     getBagButtons() {
-            const buttons = [...document.querySelector('.bag-btns')];
-            buttonsDOM = buttons;
-            buttons.forEach(button => {
-                let id = button.dataset.id;
-                let inCart = cart.find(item => item.id === id);
-                if (inCart) {
-                    button.innerText = "In Cart";
-                    button.disabled = true;
-                } else {
-                    button.addEventListener('click', (event) => {
-                        event.target.innerText = "In Cart";
-                        event.target.disabled = true;
-                        //get product on click from api
-                        let cartItem = //{...api.____(id), amount: 1};
-                            cart = [...cart, cartItem];
-                        //save cart into database somehow
-                        this.setCartValues(cart);
-                        //maybe use local storage as placeholder
-                        this.addCartItem(cartItem);
-                        this.showCart();
-                    })
-                }
-            })
+        const buttons = [...document.querySelectorAll('.bag-btn')];
+        console.log(buttons)
+        buttonsDOM = buttons;
+        buttons.forEach(button => {
+            let id = button.dataset.id;
+            let inCart = cart.find(item => item.id === id);
+            if (inCart) {
+                button.innerText = "In Cart";
+                button.disabled = true;
+            } else {
+                button.addEventListener('click', (event) => {
+                    event.target.innerText = "In Cart";
+                    event.target.disabled = true;
+                    //get product on click from api
+                    let cartItem = {...Storage.getProduct(id), amount: 1 };
+                    cart = [...cart, cartItem];
+                    Storage.saveCart(cart);
+                    //save cart into database somehow
+                    this.setCartValues(cart);
+                    //maybe use local storage as placeholder
+                    this.addCartItem(cartItem);
+                    this.showCart();
+                })
+            }
+        })
 
 
-        }
-        //place???
+    }
     setCartValues(cart) {
         let tempTotal = 0;
         let itemsTotal = 0;
@@ -158,7 +159,7 @@ class UI {
     }
     showCart() {
         cartOverlay.classList.add('transparentBcg');
-        cart.DOM.classList.add('showCart');
+        cartDOM.classList.add('showCart');
     }
     setupAPP() {
         // cart = //check cart method from below 
@@ -225,13 +226,31 @@ class UI {
 //database call for products info that will be filled by products class
 //getcart from database
 
+class Storage {
+    static saveProducts(products) {
+        localStorage.setItem("products", JSON.stringify(products));
+    }
+    static getProduct(id) {
+        let products = JSON.parse(localStorage.getItem("products"));
+        return products.find(product => product.id === id);
+    }
+    static saveCart() {
+        localStorage.setItem("cart", JSON.stringify(cart));
+    }
+}
+
+
+
 
 document.addEventListener("DOMContentLoaded", () => {
     const ui = new UI();
     const products = new Products();
     ui.setupAPP();
-    products.getProducts().then(products => ui.displayProducts(products)).then(() => {
+    products.getProducts().then(products => {
+        ui.displayProducts(products);
+        // .then(() => {ui.getBagButtons();
+        Storage.saveProducts(products)
+    }).then(() => {
         ui.getBagButtons();
-
-    });
-})
+    })
+});
