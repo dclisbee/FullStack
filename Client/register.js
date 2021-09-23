@@ -3,6 +3,7 @@ const loginButton = document.getElementById("login-form-submit");
 const loginErrorMsg = document.getElementById("login-error-msg");
 const regButton = document.querySelector("#reg-form-submit")
 const logButton = document.querySelector("#login-form-submit")
+const submitButton = document.querySelector("#login-form-submit")
 
 // loginButton.addEventListener("click", (e) => {
 //     e.preventDefault();
@@ -18,14 +19,16 @@ const logButton = document.querySelector("#login-form-submit")
 // })
 
 const createUser = async() => {
-    const url = "http://localhost:3006/create_user";
-    const userEmail = document.querySelector("#email").value;
-    const userPassword = document.querySelector("#password").value;
+    console.log("create user")
+    const url = "http://localhost:3006/register";
+    const userEmail = document.querySelector("#email-field").value;
+    console.log(userEmail)
+    const userPassword = document.querySelector("#password-field").value;
     const userAccount = {
         userEmail,
         userPassword,
     }
-
+console.log({userAccount})
     const createUsers = await fetch(url, {
         method: "POST",
         mode: "cors",
@@ -35,30 +38,8 @@ const createUser = async() => {
         body: JSON.stringify(userAccount),
     });
 }
-regButton.addEventListener("click", () => {
+submitButton.addEventListener("click", () => {
     createUser();
-})
-
-const loginUser = async() => {
-    const url = "http://localhost:3006/login_user";
-    const userEmail = document.querySelector("#email").value;
-    const userPassword = document.querySelector("#password").value;
-    const userAccount = {
-        userEmail,
-        userPassword,
-    }
-
-    const createUsers = await fetch(url, {
-        method: "POST",
-        mode: "cors",
-        headers: {
-            "Content-Type": "application/json",
-        },
-        body: JSON.stringify(userAccount),
-    });
-}
-logButton.addEventListener("click", () => {
-    loginUser();
 })
 
 
