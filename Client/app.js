@@ -1,6 +1,7 @@
 const cartBtn = document.querySelector('.cart-btn');
 const closeCartBtn = document.querySelector('.close-cart');
-const clearCart = document.querySelector('.clear-cart');
+//added btn v
+const clearCartBtn = document.querySelector('.clear-cart');
 const cartDOM = document.querySelector('.cart');
 const cartOverlay = document.querySelector('.cart-overlay');
 const cartItems = document.querySelector('.cart-items');
@@ -11,51 +12,10 @@ const regButton = document.querySelector('#register');
 const logButton = document.querySelector('#login');
 const btns = document.querySelectorAll(".bag.btn");
 
+
 let cart = [];
 
 let buttonsDOM = [];
-
-const createUser = async() => {
-        const url = "http://localhost:3006/create_user";
-        const userEmail = document.querySelector("#email").value;
-        const userPassword = document.querySelector("#password").value;
-        const userAccount = {
-            userEmail,
-            userPassword,
-        }
-
-        const createUsers = await fetch(url, {
-            method: "POST",
-            mode: "cors",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify(userAccount),
-        });
-    }
-    // regButton.addEventListener("click", () => {
-    //     createUser();
-    // })
-
-const readToDo = async() => {
-    let result = await fetch('URL');
-    let data = await result.json();
-    const url = "http://localhost:3006/get_user";
-    const userAccount = await fetch(url, {
-        method: "POST",
-        mode: "cors",
-        headers: {
-            "Content-Type": "application/json",
-        },
-    });
-
-    //maybe need id to pick user
-    const json = await userAccount.json(data.id);
-    console.log(json)
-}
-
-
-
 
 class Products {
 
@@ -101,7 +61,7 @@ class UI {
     }
     getBagButtons() {
         const buttons = [...document.querySelectorAll('.bag-btn')];
-        console.log(buttons)
+        // console.log(buttons)
         buttonsDOM = buttons;
         buttons.forEach(button => {
             let id = button.dataset.id;
@@ -113,7 +73,6 @@ class UI {
                 button.addEventListener('click', (event) => {
                     event.target.innerText = "In Cart";
                     event.target.disabled = true;
-                    //get product on click from api
                     let cartItem = {...Storage.getProduct(id), amount: 1 };
                     cart = [...cart, cartItem];
                     Storage.saveCart(cart);
@@ -162,7 +121,8 @@ class UI {
         cartDOM.classList.add('showCart');
     }
     setupAPP() {
-        // cart = //check cart method from below 
+        cart = Storage.getCart();
+        // console.log(cart)
         this.setCartValues(cart);
         this.populateCart(cart);
         cartBtn.addEventListener('click', this.showCart);
@@ -201,18 +161,19 @@ class UI {
 
     }
     clearCart() {
+        // console.log(this)
         let cartItems = cart.map(item => item.id);
-        //call remove from database for cart for all items
         cartItems.forEach(id => this.removeItem(id));
+        // console.log(cartItems)
         while (cartContent.children.length > 0) {
             cartContent.removeChild(cartContent.children[0]);
         }
         this.hideCart();
     }
     removeItem(id) {
-        cart = cart.filter(item => item.id != id);
+        cart = cart.filter(item => item.id !== id);
         this.setCartValues(cart);
-        //show updated cart from database
+        Storage.saveCart(cart);
         let button = this.getSingleButton(id);
         button.disabled = false;
         button.innerHTML = `<i class="fas fa-shopping-cart"></i>add to cart`
@@ -234,13 +195,13 @@ class Storage {
         let products = JSON.parse(localStorage.getItem("products"));
         return products.find(product => product.id === id);
     }
-    static saveCart() {
-        localStorage.setItem("cart", JSON.stringify(cart));
+    static saveCart(cart) {
+        localStorage.setItem('cart', JSON.stringify(cart));
+    }
+    static getCart() {
+        return localStorage.getItem('cart') ? JSON.parse(localStorage.getItem('cart')) : []
     }
 }
-
-
-
 
 document.addEventListener("DOMContentLoaded", () => {
     const ui = new UI();
@@ -248,9 +209,9 @@ document.addEventListener("DOMContentLoaded", () => {
     ui.setupAPP();
     products.getProducts().then(products => {
         ui.displayProducts(products);
-        // .then(() => {ui.getBagButtons();
         Storage.saveProducts(products)
     }).then(() => {
         ui.getBagButtons();
+        ui.cartLogic();
     })
 });

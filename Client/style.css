@@ -1,6 +1,6 @@
 @import url("https://fonts.googleapis.com/css?family=Lato:400,700");
 :root {
-    --primaryColor: #75E6DA;
+    --primaryColor: #20a3db;
     --mainWhite: #fff;
     --mainBlack: #222;
     --mainGrey: #D4F1F4;
@@ -31,7 +31,7 @@ body {
     width: 100%;
     display: flex;
     align-items: center;
-    background: rgb(231, 226, 221);
+    background: #72dff5;
     z-index: 1;
 }
 
@@ -124,7 +124,7 @@ body {
 
 .hero {
     min-height: calc(100vh - 60px);
-    background: url("https://wallpapercave.com/wp/OzpiTdT.jpg") center/cover no-repeat;
+    background: url("https://previews.123rf.com/images/eigens/eigens1905/eigens190501384/123432283-dirty-brush-strokes-background-with-powder-blue-blue-chill-and-medium-aqua-marine-colors-graphic-can.jpg") center/cover no-repeat;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -216,9 +216,11 @@ body {
 }
 
 .product-image {
+    /* padding-left: 170px; */
     display: block;
-    width: 100%;
-    min-height: 12rem;
+    min-width: 12rem;
+    /* height: 6vh; */
+    max-height: 12rem;
     transition: var(--mainTransition);
 }
 
@@ -345,14 +347,33 @@ body {
 }
 
 #main-holder {
-    width: 50%;
+    /* margin-top: 150px;
+    margin-left: 300px; */
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-bottom: 20px;
+    width: 100%;
     height: 70%;
     display: grid;
     justify-items: center;
     align-items: center;
-    background-color: white;
-    border-radius: 7px;
-    box-shadow: 0px 0px 5px 2px black;
+    /* background-color: white; */
+    /* border-radius: 7px; */
+    /* box-shadow: 0px 0px 5px 2px black; */
+}
+
+#main-holder .reg-cl {
+    padding-top: 20px;
+    padding-bottom: 50px;
+}
+
+#main-holder .log-cl {
+    padding-top: 20px;
+}
+
+.main-cont {
+    padding-top: 500px;
+    height: 100px;
 }
 
 #login-error-msg-holder {
@@ -410,4 +431,16 @@ body {
     background-color: #3a3a3a;
     cursor: pointer;
     outline: none;
+}
+
+.new-container {
+    padding-top: 130px;
+    padding-left: 350px;
+    text-align: center;
+    width: 1000px;
+    line-height: 180%;
+}
+
+.new-container hr {
+    margin: 40px;
 }
