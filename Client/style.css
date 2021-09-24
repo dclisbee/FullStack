@@ -444,3 +444,21 @@ body {
 .new-container hr {
     margin: 40px;
 }
+
+/* .products-center img{
+   padding-left: 170px;
+   display: block;
+   min-width: 18rem;
+   height: 6vh;
+   max-height: 18rem;
+   transition: var(--mainTransition); 
+}
+
+.products-center h4{
+    color: var(--primaryColor);
+}
+
+.products-center h4,h3{
+    text-align: center;
+    margin-top: 20px;
+} */

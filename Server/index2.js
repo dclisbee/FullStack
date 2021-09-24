@@ -16,7 +16,7 @@ app.post('/register', async (req, res) => {
   .insert([
     { email:userEmail, password:userPassword}
   ])
-  console.log(error)
+  console.log(error) 
   if(data){
       console.log(data)
       res.status(200).send(data)

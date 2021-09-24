@@ -21,9 +21,8 @@ class Products {
 
 
     async getProducts() {
-        let result = await fetch('products.json');
+        let result = await fetch('products.json')
         let data = await result.json();
-
         let products = data.items;
         products = products.map(item => {
             //FIELDS IS SUB ARRAY SECTION NAME
